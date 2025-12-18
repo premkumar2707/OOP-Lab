@@ -1,0 +1,28 @@
+class ProcessTask extends Thread {
+ private String taskName;
+ ProcessTask(String taskName) {
+ this.taskName = taskName;
+ }
+ // Each thread executes this run() method
+ public void run() {
+ for (int i = 1; i <= 5; i++) {
+ System.out.println(taskName + " - Step " + i);
+ try {
+ Thread.sleep(500); // simulate processing time
+ } catch (InterruptedException e) {
+ System.out.println(taskName + " interrupted!");
+ }
+ }
+ System.out.println(taskName + " completed!");
+ }
+}
+public class ThreadMethodDemo {
+ public static void main(String[] args) {
+ // Create threads for different “methods/processes”
+ ProcessTask process1 = new ProcessTask("Load Calculation");
+ ProcessTask process2 = new ProcessTask("Temperature Monitoring");
+ // Start the threads
+ process1.start();
+ process2.start();
+ }
+}
