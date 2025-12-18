@@ -1,0 +1,18 @@
+import java.util.Scanner;
+public class SqrtCalculator {
+ public static void main(String[] args) {
+ Scanner sc = new Scanner(System.in);
+ try {
+ System.out.print("Enter a number: ");
+ double num = sc.nextDouble();
+ if (num < 0) {
+ throw new IllegalArgumentException("Cannot find square root of negative number!");
+ }
+ double result = Math.sqrt(num);
+ System.out.println("Square Root = " + result);
+
+ } catch (IllegalArgumentException e) {
+ System.out.println("Error: " + e.getMessage());
+ }
+ }
+}
