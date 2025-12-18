@@ -1,0 +1,37 @@
+class BankAccount {
+ private int balance = 0;
+ // synchronized method to safely deposit
+ public synchronized void deposit(int amount, String name) {
+ balance += amount;
+ System.out.println(name + " deposited " + amount + ", Balance = " + balance);
+ }
+}
+class DepositTask implements Runnable {
+ private BankAccount account;
+ private String threadName;
+ public DepositTask(BankAccount account, String threadName) {
+ this.account = account;
+ this.threadName = threadName;
+ }
+ @Override
+ public void run() {
+ for (int i = 1; i <= 3; i++) {
+ account.deposit(100, threadName);
+ try {
+ Thread.sleep(100); // simulate delay
+ } catch (InterruptedException e) {
+ e.printStackTrace();
+ }
+ }
+ }
+}
+public class BankDemo {
+ public static void main(String[] args) {
+ BankAccount account = new BankAccount();
+ // Create two deposit threads
+ Thread t1 = new Thread(new DepositTask(account, "Thread-1"));
+ Thread t2 = new Thread(new DepositTask(account, "Thread-2"));
+ t1.start();
+ t2.start();
+ }
+}
