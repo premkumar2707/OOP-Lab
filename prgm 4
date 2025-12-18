@@ -1,0 +1,97 @@
+import java.util.Scanner;
+// Base class
+abstract class Shape {
+ // Method Overloading for area
+ double calculateArea(double radius) {
+ return Math.PI * radius * radius;
+ }
+ double calculateArea(double length, double breadth) {
+ return length * breadth;
+ }
+ double calculateArea(double base, double height, boolean isTriangle) {
+ return 0.5 * base * height;
+ }
+ // Method Overriding for perimeter
+ abstract double calculatePerimeter();
+}
+// Circle class
+class Circle extends Shape {
+ double radius;
+ Circle(double radius) {
+ this.radius = radius;
+ }
+ @Override
+ double calculatePerimeter() {
+ return 2 * Math.PI * radius;
+ }
+}
+class Rectangle extends Shape {
+ double length, breadth;
+ Rectangle(double length, double breadth) {
+ this.length = length;
+ this.breadth = breadth;
+ }
+ @Override
+ double calculatePerimeter() {
+ return 2 * (length + breadth);
+ }
+}
+// Triangle class
+class Triangle extends Shape {
+ double a, b, c;
+ Triangle(double a, double b, double c) {
+ this.a = a;
+ this.b = b;
+ this.c = c;
+ }
+ @Override
+ double calculatePerimeter() {
+ return a + b + c;
+ }
+}
+// Main class
+public class EngineeringShapes {
+ public static void main(String[] args) {
+ Scanner sc = new Scanner(System.in);
+ System.out.println("--- Engineering Drawing Shapes ---");
+ System.out.println("Choose a shape: 1.Circle 2.Rectangle 3.Triangle");
+ int choice = sc.nextInt();
+ Shape shape = null;
+ switch (choice) {
+ case 1:
+ System.out.print("Enter radius of circle: ");
+ double r = sc.nextDouble();
+ shape = new Circle(r);
+ System.out.println("Area (Overloaded method): " + shape.calculateArea(r));
+ break;
+ case 2:
+ System.out.print("Enter length of rectangle: ");
+ double l = sc.nextDouble();
+ System.out.print("Enter breadth of rectangle: ");
+ double b = sc.nextDouble();
+ shape = new Rectangle(l, b);
+ System.out.println("Area (Overloaded method): " + shape.calculateArea(l, b));
+ break;
+ case 3:
+ System.out.print("Enter base of triangle: ");
+ double base = sc.nextDouble();
+ System.out.print("Enter height of triangle: ");
+ double h = sc.nextDouble();
+ System.out.print("Enter side a: ");
+ double a = sc.nextDouble();
+ System.out.print("Enter side b: ");
+ double bb = sc.nextDouble();
+ System.out.print("Enter side c: ");
+ double cc = sc.nextDouble();
+ shape = new Triangle(a, bb, cc);
+ System.out.println("Area (Overloaded method): " + shape.calculateArea(base, h, true));
+ break;
+ default:
+ System.out.println("Invalid choice!");
+ }
+ if (shape != null) {
+ System.out.println("Perimeter (Overridden method): " + shape.calculatePerimeter());
+ }
+ sc.close();
+ }
+}
