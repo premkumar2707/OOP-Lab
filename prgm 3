@@ -1,0 +1,25 @@
+import java.util.Scanner;
+public class Matrix {
+public static void main(String[] args) { Scanner scanner = new Scanner(System.in);
+System.out.println("Enter the value of N: "); int N = scanner.nextInt();
+int[][] firstMatrix = new int[N][N]; int[][] secondMatrix = new int[N][N]; int[][]
+resultMatrix = new int[N][N];
+System.out.println("Enter the elements of first matrix: "); for (int i = 0; i < N; i++) {
+for (int j = 0; j < N; j++) { firstMatrix[i][j] = scanner.nextInt();
+}
+}
+System.out.println("Enter the elements of second matrix: "); for (int i = 0; i < N; i++) {
+for (int j = 0; j < N; j++) { secondMatrix[i][j] = scanner.nextInt();
+}
+}
+for (int i = 0; i < N; i++) { for (int j = 0; j < N; j++) {
+resultMatrix[i][j] = firstMatrix[i][j] + secondMatrix[i][j];
+}
+}
+System.out.println("The resultant matrix is: "); for (int i = 0; i < N; i++) {
+for (int j = 0; j < N; j++) { System.out.print(resultMatrix[i][j] + " ");
+}
+System.out.println();
+}
+}
+}
