@@ -1,95 +1,109 @@
 import java.util.*;
+
 class Student {
- String name;
- HashSet<String> courses; // Stores enrolled courses
- HashMap<String, Integer> marks; // Stores marks for courses
- Student(String name) {
- this.name = name;
- this.courses = new HashSet<>();
- this.marks = new HashMap<>();
- }
- // Enroll in course
- void enrollCourse(String course) {
- courses.add(course);
- }
- // Add marks
- void addMarks(String course, int mark) {
- if (courses.contains(course)) {
- marks.put(course, mark);
- } else {
- System.out.println("Student not enrolled in " + course);
- }
- }
- // Display details
- void displayStudent() {
- System.out.println("Student: " + name);
- System.out.println("Courses Enrolled: " + courses);
- System.out.println("Marks: " + marks);
- System.out.println("-------------------------");
- }
+    String name;
+    HashSet<String> courses; // Stores enrolled courses
+    HashMap<String, Integer> marks; // Stores marks for courses
+
+    Student(String name) {
+        this.name = name;
+        this.courses = new HashSet<>();
+        this.marks = new HashMap<>();
+    }
+
+    // Enroll in course
+    void enrollCourse(String course) {
+        courses.add(course);
+    }
+
+    // Add marks
+    void addMarks(String course, int mark) {
+        if (courses.contains(course)) {
+            marks.put(course, mark);
+        } else {
+            System.out.println("Student not enrolled in " + course);
+        }
+    }
+
+    // Display details
+    void displayStudent() {
+        System.out.println("Student: " + name);
+        System.out.println("Courses Enrolled: " + courses);
+        System.out.println("Marks: " + marks);
+        System.out.println("-------------------------");
+    }
 }
+
 public class StudentCourseSystem {
- public static void main(String[] args) {
- Scanner sc = new Scanner(System.in);
- ArrayList<Student> students = new ArrayList<>();
- while (true) {
- System.out.println("\n===== Student Course Management System =====");
- System.out.println("1. Add Student");
- System.out.println("2. Enroll Course");
- System.out.println("3. Add Marks");
- System.out.println("4. Display All Students");
- System.out.println("5. Exit");
- System.out.print("Enter choice: ");
- int choice = sc.nextInt();
- sc.nextLine(); // consume newline
- switch (choice) {
- case 1:
- System.out.print("Enter student name: ");
- String name = sc.nextLine();
- students.add(new Student(name));
- System.out.println("Student added successfully!");
- break;
- case 2:
- System.out.print("Enter student name: ");
- String sName = sc.nextLine();
- System.out.print("Enter course name: ");
- String course = sc.nextLine();
- for (Student s : students) {
- if (s.name.equalsIgnoreCase(sName)) {
- s.enrollCourse(course);
- System.out.println("Course enrolled successfully!");
- break;
- }
- }
- break;
- case 3:
- System.out.print("Enter student name: ");
- String stName = sc.nextLine();
- System.out.print("Enter course name: ");
- String cName = sc.nextLine();
- System.out.print("Enter marks: ");
- int mark = sc.nextInt();
- sc.nextLine();
- for (Student s : students) {
- if (s.name.equalsIgnoreCase(stName)) {
- s.addMarks(cName, mark);
- System.out.println(" Marks added successfully!");
- break;
- }
- }
- break;
- case 4:
- for (Student s : students) {
- s.displayStudent();
- }
- break;
- case 5:
- System.out.println("Exiting... Goodbye!");
- sc.close();
- return;
- default:
- System.out.println(" Invalid choice. Try again!");
- }
- }
- }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Student> students = new ArrayList<>();
+
+        while (true) {
+            System.out.println("\n===== Student Course Management System =====");
+            System.out.println("1. Add Student");
+            System.out.println("2. Enroll Course");
+            System.out.println("3. Add Marks");
+            System.out.println("4. Display All Students");
+            System.out.println("5. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter student name: ");
+                    String name = sc.nextLine();
+                    students.add(new Student(name));
+                    System.out.println("Student added successfully!");
+                    break;
+
+                case 2:
+                    System.out.print("Enter student name: ");
+                    String sName = sc.nextLine();
+                    System.out.print("Enter course name: ");
+                    String course = sc.nextLine();
+                    for (Student s : students) {
+                        if (s.name.equalsIgnoreCase(sName)) {
+                            s.enrollCourse(course);
+                            System.out.println("Course enrolled successfully!");
+                            break;
+                        }
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter student name: ");
+                    String stName = sc.nextLine();
+                    System.out.print("Enter course name: ");
+                    String cName = sc.nextLine();
+                    System.out.print("Enter marks: ");
+                    int mark = sc.nextInt();
+                    sc.nextLine();
+                    for (Student s : students) {
+                        if (s.name.equalsIgnoreCase(stName)) {
+                            s.addMarks(cName, mark);
+                            System.out.println("Marks added successfully!");
+                            break;
+                        }
+                    }
+                    break;
+
+                case 4:
+                    for (Student s : students) {
+                        s.displayStudent();
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("Exiting... Goodbye!");
+                    sc.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice. Try again!");
+            }
+        }
+    }
 }
