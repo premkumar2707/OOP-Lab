@@ -1,93 +1,115 @@
 import java.util.Scanner;
+
 // Abstract class
 abstract class Shape {
- abstract double calculateArea();
- abstract double calculatePerimeter();
+    abstract double calculateArea();
+    abstract double calculatePerimeter();
 }
+
 // Circle class
 class Circle extends Shape {
- double radius;
- Circle(double radius) {
- this.radius = radius;
- }
- @Override
- double calculateArea() {
- return Math.PI * radius * radius;
- }
- @Override
- double calculatePerimeter() {
- return 2 * Math.PI * radius;
- }
+    double radius;
+
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+
+    @Override
+    double calculatePerimeter() {
+        return 2 * Math.PI * radius;
+    }
 }
+
 // Rectangle class
 class Rectangle extends Shape {
- double length, width;
- Rectangle(double length, double width) {
- this.length = length;
- this.width = width;
- }
- @Override
- double calculateArea() {
- return length * width;
- }
- @Override
- double calculatePerimeter() {
- return 2 * (length + width);
- }
+    double length, width;
+
+    Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    double calculateArea() {
+        return length * width;
+    }
+
+    @Override
+    double calculatePerimeter() {
+        return 2 * (length + width);
+    }
 }
+
 // Triangle class
 class Triangle extends Shape {
- double a, b, c; // sides
- Triangle(double a, double b, double c) {
- this.a = a;
- this.b = b;
- this.c = c;
- }
- @Override
- double calculateArea() {
- // Heron’s formula
- double s = (a + b + c) / 2;
- return Math.sqrt(s * (s - a) * (s - b) * (s - c));
- }
- @Override
- double calculatePerimeter() {
- return a + b + c;
- }
+    double a, b, c; // sides
+
+    Triangle(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    @Override
+    double calculateArea() {
+        // Heron’s formula
+        double s = (a + b + c) / 2;
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+    }
+
+    @Override
+    double calculatePerimeter() {
+        return a + b + c;
+    }
 }
+
 public class EngineeringShapes {
- public static void main(String[] args) {
- Scanner sc = new Scanner(System.in);
- System.out.println("Choose a shape:\n1. Circle\n2. Rectangle\n3. Triangle");
- int choice = sc.nextInt();
- Shape shape = null;
- switch (choice) {
- case 1:
- System.out.print("Enter radius: ");
- double r = sc.nextDouble();
- shape = new Circle(r);
- break;
- case 2:
- System.out.print("Enter length: ");
- double l = sc.nextDouble();
- System.out.print("Enter width: ");
- double w = sc.nextDouble();
- shape = new Rectangle(l, w);
- break;
- case 3:
- System.out.print("Enter side a: ");
- double a = sc.nextDouble();
- System.out.print("Enter side b: ");
- double b = sc.nextDouble();
- System.out.print("Enter side c: ");
- double c = sc.nextDouble();
- shape = new Triangle(a, b, c);
- break;
- default:
- System.out.println("Invalid choice!");
- System.exit(0);
- }
- System.out.println("Area = " + shape.calculateArea());
- System.out.println("Perimeter = " + shape.calculatePerimeter());
- sc.close();
- }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Choose a shape:\n1. Circle\n2. Rectangle\n3. Triangle");
+        int choice = sc.nextInt();
+
+        Shape shape = null;
+
+        switch (choice) {
+            case 1:
+                System.out.print("Enter radius: ");
+                double r = sc.nextDouble();
+                shape = new Circle(r);
+                break;
+
+            case 2:
+                System.out.print("Enter length: ");
+                double l = sc.nextDouble();
+                System.out.print("Enter width: ");
+                double w = sc.nextDouble();
+                shape = new Rectangle(l, w);
+                break;
+
+            case 3:
+                System.out.print("Enter side a: ");
+                double a = sc.nextDouble();
+                System.out.print("Enter side b: ");
+                double b = sc.nextDouble();
+                System.out.print("Enter side c: ");
+                double c = sc.nextDouble();
+                shape = new Triangle(a, b, c);
+                break;
+
+            default:
+                System.out.println("Invalid choice!");
+                System.exit(0);
+        }
+
+        System.out.println("Area = " + shape.calculateArea());
+        System.out.println("Perimeter = " + shape.calculatePerimeter());
+
+        sc.close();
+    }
 }
