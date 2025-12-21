@@ -1,38 +1,41 @@
 import java.util.PriorityQueue;
+
 class Project implements Comparable<Project> {
- String studentName;
- String projectTitle;
- int priority; // 1 = Highest, 4 = Lowest
- // Constructor
- public Project(String studentName, String projectTitle, int priority) {
- this.studentName = studentName;
- this.projectTitle = projectTitle;
- this.priority = priority;
- }
- // Compare based on priority
- @Override
- public int compareTo(Project other) {
- return Integer.compare(this.priority, other.priority);
- }
- @Override
- public String toString() {
- return "Student: " + studentName +
- ", Project: " + projectTitle +
- ", Priority: " + priority;
- }
+    String studentName;
+    String projectTitle;
+    int priority;
+
+    public Project(String studentName, String projectTitle, int priority) {
+        this.studentName = studentName;
+        this.projectTitle = projectTitle;
+        this.priority = priority;
+    }
+
+    @Override
+    public int compareTo(Project other) {
+        return Integer.compare(this.priority, other.priority);
+    }
+
+    @Override
+    public String toString() {
+        return "Student: " + studentName +
+               ", Project: " + projectTitle +
+               ", Priority: " + priority;
+    }
 }
+
 public class PriorityQueueExample {
- public static void main(String[] args) {
- PriorityQueue<Project> projectQueue = new PriorityQueue<>();
- // Adding projects (like students submitting work)
- projectQueue.add(new Project("Alice", "AI-based Attendance System", 1));
- projectQueue.add(new Project("Bob", "Mechanical CAD Model", 3));
- projectQueue.add(new Project("Charlie", "IoT Smart Parking System", 2));
- projectQueue.add(new Project("David", "Civil Bridge Design", 4));
- // Processing projects based on priority
- System.out.println("Processing projects in order of priority:\n");
- while (!projectQueue.isEmpty()) {
- System.out.println(projectQueue.poll());
- }
- }
+    public static void main(String[] args) {
+        PriorityQueue<Project> projectQueue = new PriorityQueue<>();
+
+        projectQueue.add(new Project("Alice", "AI-based Attendance System", 1));
+        projectQueue.add(new Project("Bob", "Mechanical CAD Model", 3));
+        projectQueue.add(new Project("Charlie", "IoT Smart Parking System", 2));
+        projectQueue.add(new Project("David", "Civil Bridge Design", 4));
+
+        System.out.println("Processing projects in order of priority:\n");
+        while (!projectQueue.isEmpty()) {
+            System.out.println(projectQueue.poll());
+        }
+    }
 }
